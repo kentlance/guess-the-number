@@ -13,7 +13,9 @@ Create a game using the following concepts:
 - useState
 - context
 - useEffect
-  Must have the following features:
+
+Must have the following features:
+
 - more than 1 screen
 - multiplayer or user vs computer
 
