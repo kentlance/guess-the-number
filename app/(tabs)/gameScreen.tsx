@@ -1,22 +1,19 @@
 import { Text, Pressable, StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useNavigation } from "@react-navigation/native";
 
 export default function HomeScreen() {
-  const navigation = useNavigation();
-
+  {
+    /** Home screen for the app */
+  }
   return (
     <SafeAreaView>
       <View style={styles.homeContainer}>
         <Text style={styles.title}>Guess The Number</Text>
 
         <View style={styles.buttonContainer}>
-          <Pressable
-            style={styles.homeButton}
-            // @ts-ignore
-            onPress={() => navigation.navigate("Guess The Number!")}
-          >
+          <Pressable style={styles.homeButton}>
             <Text style={styles.buttonText}>Play Against Computer</Text>
+            {/** Go to gameScreen.tsx */}
           </Pressable>
         </View>
       </View>
