@@ -9,6 +9,7 @@ import {
   ViewStyle,
 } from "react-native";
 
+// Define props and what the GuessComponent expects to receive
 interface GuessComponentProps {
   isCorrect: boolean;
   isHigher: boolean;

@@ -11,15 +11,19 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import GuessComponent from "../(tabs)/guessComponent";
 
 export default function HomeScreen() {
+  // Generate a number, keep that number in state
   const [computerNumber, setComputerNumber] = useState(
     () => Math.floor(Math.random() * 100) + 1
   );
   const [guess, setGuess] = useState("");
+  // Keep track of attempts
   const [attempts, setAttempts] = useState<{ guess: number; result: string }[]>(
     []
   );
   const [attemptCount, setAttemptCount] = useState(0);
+  // Keep track if user submitted a guess
   const [hasSubmittedGuess, setHasSubmittedGuess] = useState(false);
+  // Show component or not
   const [componentIsVisible, setComponentIsVisible] = useState(false);
 
   const handleGuess = () => {
