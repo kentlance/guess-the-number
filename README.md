@@ -36,7 +36,7 @@ Home Screen
 - Main Menu
 
 Game Screen
-- Actual game location
+- "Guess The Number!" screen where the user plays the game
 
 Modal
 - Shows if user is correct or wrong (too low or high)
