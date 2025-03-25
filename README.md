@@ -1,8 +1,10 @@
+# Guess The Number!
+
 This is an app made in React with Expo, Tailwind
 
 Also used: ESLint and Prettier
 
-# Assignment
+## Assignment
 
 This was made for my ADET subject:
 
@@ -20,3 +22,5 @@ Must have the following features:
 - multiplayer or user vs computer
 
 Must also be on your Github with title, overview, screenshot of each screen, and description of each screen. Submit a link to your Github repo.
+
+## Screenshots
