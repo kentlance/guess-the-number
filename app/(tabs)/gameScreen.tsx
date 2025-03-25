@@ -1,13 +1,46 @@
 import { useState } from "react";
-import { Text, Pressable, StyleSheet, View, TextInput } from "react-native";
+import {
+  Text,
+  Pressable,
+  StyleSheet,
+  View,
+  TextInput,
+  ScrollView,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import GuessComponent from "../(tabs)/guessComponent";
 
 export default function HomeScreen() {
-  const computerNumber = Math.floor(Math.random() * 100) + 1;
+  const [computerNumber, setComputerNumber] = useState(
+    () => Math.floor(Math.random() * 100) + 1
+  );
   const [guess, setGuess] = useState("");
-  const [attempts, setAttempts] = useState(0);
-  const [showGuessComponent, setShowGuessComponent] = useState(false);
+  const [attempts, setAttempts] = useState<{ guess: number; result: string }[]>(
+    []
+  );
+  const [attemptCount, setAttemptCount] = useState(0);
+  const [hasSubmittedGuess, setHasSubmittedGuess] = useState(false);
+  const [componentIsVisible, setComponentIsVisible] = useState(false);
+
+  const handleGuess = () => {
+    setHasSubmittedGuess(true);
+    const newAttempt = {
+      guess: Number(guess),
+      result:
+        Number(guess) === computerNumber
+          ? "Correct!"
+          : Number(guess) > computerNumber
+            ? "Too high!"
+            : "Too low!",
+    };
+    setAttempts((prevAttempts) => [...prevAttempts, newAttempt]);
+    setAttemptCount(attemptCount + 1);
+    setComponentIsVisible(true);
+  };
+
+  const handleClose = () => {
+    setComponentIsVisible(false);
+  };
 
   return (
     <SafeAreaView>
@@ -23,23 +56,32 @@ export default function HomeScreen() {
         <Text style={styles.subtitle}>Guess from 1 to 100!</Text>
 
         <View style={styles.buttonContainer}>
-          <Pressable style={styles.homeButton}>
-            <Text
-              style={styles.buttonText}
-              onPress={() => setShowGuessComponent(true)}
-            >
-              Guess
-            </Text>
+          <Pressable style={styles.homeButton} onPress={handleGuess}>
+            <Text style={styles.buttonText}>Guess</Text>
           </Pressable>
         </View>
-        {showGuessComponent && (
+        {hasSubmittedGuess && (
           <GuessComponent
             isCorrect={Number(guess) === computerNumber}
             isHigher={Number(guess) > computerNumber}
+            isVisible={componentIsVisible}
+            onClose={handleClose}
+            correctNumber={computerNumber}
+            attempts={attempts.length}
           />
         )}
-        <View>
-          <Text>Attempts: {attempts}</Text>
+        <View style={styles.attemptsContainer}>
+          <ScrollView>
+            {attempts
+              .slice()
+              .reverse()
+              .map((attempt, index) => (
+                <Text style={styles.attemptText} key={index}>
+                  Attempt {attempts.length - index}: {attempt.guess} -{" "}
+                  {attempt.result}
+                </Text>
+              ))}
+          </ScrollView>
         </View>
       </View>
     </SafeAreaView>
@@ -87,5 +129,15 @@ const styles = StyleSheet.create({
   buttonText: {
     color: "black",
     fontSize: 18,
+  },
+  attemptsContainer: {
+    width: "100%",
+    alignItems: "center",
+    height: 200,
+  },
+  attemptText: {
+    color: "white",
+    alignSelf: "flex-start",
+    marginBottom: 10,
   },
 });
