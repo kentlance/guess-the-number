@@ -31,3 +31,12 @@ Must also be on your Github with title, overview, screenshot of each screen, and
   <img src="https://github.com/kentlance/guess-the-number/blob/master/assets/images/screenshots/wrong.png" alt="Wrong Screen" width="200" />
   <img src="https://github.com/kentlance/guess-the-number/blob/master/assets/images/screenshots/correct.png" alt="Correct Screen" width="200" />
 </p>
+
+Home Screen
+- Main Menu
+
+Game Screen
+- Actual game location
+
+Modal
+- Shows if user is correct or wrong (too low or high)
